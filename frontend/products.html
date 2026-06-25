@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — NovaShop</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="navbar-mount"></div>
+
+  <main class="section" id="products" style="padding-top:100px">
+    <div class="container">
+      <div class="section-head">
+        <h2>Browse Products</h2>
+      </div>
+
+      <div class="category-pills" id="categoryPills"></div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search products..." />
+        </div>
+        <select class="sort-select" id="sortSelect">
+          <option value="newest">Newest</option>
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+        </select>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="logo">Nova<span style="color:var(--primary)">Shop</span></h4>
+          <p class="muted" style="max-width:260px">Your destination for the future of shopping. Quality products, delivered fast.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="products.html">All Products</a>
+          <a href="cart.html" target="_blank">Cart</a>
+          <a href="orders.html">My Orders</a>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="index.html#contact">About</a>
+          <a href="index.html#contact">Contact</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2024 NovaShop · CodeAlpha E-Commerce Store · MIT License</div>
+    </div>
+  </footer>
+
+  <script src="js/pk_images.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

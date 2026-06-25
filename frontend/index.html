@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaShop — Shop the Future</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="navbar-mount"></div>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Shop the Future.</h1>
+      <p>Discover next-generation tech, style, and essentials — curated for people who want more from every purchase.</p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn btn-lg">Explore Products</a>
+        <a href="register.html" class="btn btn-lg btn-outline" id="heroRegisterBtn">Create Account</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Categories -->
+  <section class="section" style="padding-top:60px;padding-bottom:60px">
+    <div class="container">
+      <div class="section-head">
+        <h2>Shop by Category</h2>
+      </div>
+      <div class="home-categories">
+        <a href="products.html?category=Electronics" class="home-cat-card">
+          <span class="cat-icon">🎧</span>
+          <span class="cat-label">Electronics</span>
+        </a>
+        <a href="products.html?category=Clothing" class="home-cat-card">
+          <span class="cat-icon">👕</span>
+          <span class="cat-label">Clothing</span>
+        </a>
+        <a href="products.html?category=Books" class="home-cat-card">
+          <span class="cat-icon">📚</span>
+          <span class="cat-label">Books</span>
+        </a>
+        <a href="products.html?category=Accessories" class="home-cat-card">
+          <span class="cat-icon">👜</span>
+          <span class="cat-label">Accessories</span>
+        </a>
+        <a href="products.html?category=Sports" class="home-cat-card">
+          <span class="cat-icon">🏅</span>
+          <span class="cat-label">Sports</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Contact -->
+  <section class="section contact-section" id="contact" style="background:var(--surface-2)">
+    <div class="container">
+      <div class="section-head">
+        <h2>About & Contact</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-about">
+          <h3>Who We Are</h3>
+          <p>NovaShop is your one-stop destination for curated, trend-forward products — from the latest electronics and streetwear to cute accessories and lifestyle essentials. We handpick every item so you don't have to scroll endlessly. Quality you can trust, prices that make sense.</p>
+          <p style="margin-top:12px">Whether you're treating yourself or shopping for someone special, NovaShop delivers an experience as good as the products themselves.</p>
+        </div>
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <div>
+              <strong>Email Us</strong>
+              <p>hello@novashop.store</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <div>
+              <strong>WhatsApp Support</strong>
+              <p>+92 300 0000000</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <div>
+              <strong>Support Hours</strong>
+              <p>Mon – Sat, 10 AM – 8 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-reviews-summary">
+          <h3>What Our Customers Say</h3>
+          <div class="testimonial-card">
+            <div class="stars-row">★★★★★</div>
+            <p>"Fast delivery and the AirPods are 100% genuine. Absolutely love NovaShop!"</p>
+            <span class="reviewer">— Ayesha K.</span>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars-row">★★★★★</div>
+            <p>"Ordered the cargo trousers and they fit perfectly. Great quality for the price."</p>
+            <span class="reviewer">— Hamza R.</span>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars-row">★★★★☆</div>
+            <p>"The mushroom keychain is so cute! Packaged really well. Will order again."</p>
+            <span class="reviewer">— Mahnoor S.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="logo">Nova<span style="color:var(--primary)">Shop</span></h4>
+          <p class="muted" style="max-width:260px">Your destination for the future of shopping. Quality products, delivered fast.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="products.html">All Products</a>
+          <a href="cart.html" target="_blank">Cart</a>
+          <a href="orders.html">My Orders</a>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="login.html" id="footerLoginLink">Login</a>
+          <a href="register.html" id="footerRegisterLink">Register</a>
+          <a href="#" id="footerLogoutLink" style="display:none" onclick="Auth.logout();window.location.href='index.html'">Logout</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#contact">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2024 NovaShop · CodeAlpha E-Commerce Store · MIT License</div>
+    </div>
+  </footer>
+
+  <script src="js/pk_images.js"></script>
+  <script src="js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      buildNavbar('home');
+      if (Auth.isLoggedIn()) {
+        var btn = document.getElementById('heroRegisterBtn');
+        if (btn) btn.style.display = 'none';
+        var loginLink = document.getElementById('footerLoginLink');
+        var registerLink = document.getElementById('footerRegisterLink');
+        var logoutLink = document.getElementById('footerLogoutLink');
+        if (loginLink) loginLink.style.display = 'none';
+        if (registerLink) registerLink.style.display = 'none';
+        if (logoutLink) logoutLink.style.display = '';
+      }
+    });
+  </script>
+</body>
+</html>
