@@ -84,7 +84,10 @@ const api = {
 
 /* ------------------------------ Image helper ------------------------------ */
 function productImage(filename) {
-  return filename ? `/uploads/${filename}` : '';
+  if (!filename) return '';
+  // Cloudinary URL already complete hota hai
+  if (filename.startsWith('http')) return filename;
+  return `/uploads/${filename}`;
 }
 
 const CATEGORY_EMOJI = {

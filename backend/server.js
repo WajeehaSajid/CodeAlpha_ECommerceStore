@@ -19,8 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Static: uploaded images
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// NOTE: /uploads static line removed — images are now served from Cloudinary
 
 // Static: frontend
 const frontendDir = path.join(__dirname, '..', 'frontend');
@@ -40,7 +39,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(frontendDir, 'index.html'));
 });
 
-// Error handler (e.g. multer errors)
+// Error handler (e.g. multer/cloudinary errors)
 app.use((err, req, res, next) => {
   console.error(err.message);
   res.status(err.status || 500).json({ message: err.message || 'Server error' });

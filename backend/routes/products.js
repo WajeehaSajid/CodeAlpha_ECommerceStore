@@ -1,31 +1,34 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 const Product = require('../models/Product');
 const { protect, adminOnly } = require('../middleware/auth');
 
 const router = express.Router();
 
-// ---- Multer setup for product image uploads ----
-const uploadDir = path.join(__dirname, '..', 'uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
+// ---- Cloudinary config ----
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadDir),
-  filename: (req, file, cb) => {
-    const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, `product-${unique}${path.extname(file.originalname)}`);
+// ---- Multer + Cloudinary storage ----
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'novashop-products',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif', 'jfif'],
+    transformation: [{ width: 800, height: 800, crop: 'limit' }],
   },
 });
 
 const fileFilter = (req, file, cb) => {
-  const allowed = /jpeg|jpg|png|gif|webp/;
+  const allowed = /jpeg|jpg|png|gif|webp|avif|jfif/;
   const ext = allowed.test(path.extname(file.originalname).toLowerCase());
-  const mime = allowed.test(file.mimetype);
-  if (ext && mime) return cb(null, true);
+  if (ext) return cb(null, true);
   cb(new Error('Only image files are allowed'));
 };
 
@@ -97,7 +100,8 @@ router.post('/', protect, adminOnly, upload.single('image'), async (req, res) =>
       price,
       category,
       stock,
-      image: req.file ? req.file.filename : '',
+      // Cloudinary returns full URL in req.file.path
+      image: req.file ? req.file.path : '',
     });
     res.status(201).json(product);
   } catch (err) {
@@ -117,7 +121,9 @@ router.put('/:id', protect, adminOnly, upload.single('image'), async (req, res) 
     if (price !== undefined) product.price = price;
     if (category !== undefined) product.category = category;
     if (stock !== undefined) product.stock = stock;
-    if (req.file) product.image = req.file.filename;
+
+    // If new image uploaded, use Cloudinary URL
+    if (req.file) product.image = req.file.path;
 
     await product.save();
     res.json(product);
@@ -138,7 +144,7 @@ router.delete('/:id', protect, adminOnly, async (req, res) => {
   }
 });
 
-// POST /api/products/:id/reviews  (protected) - add a rating/review
+// POST /api/products/:id/reviews  (protected)
 router.post('/:id/reviews', protect, async (req, res) => {
   try {
     const { rating, review } = req.body;
