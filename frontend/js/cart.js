@@ -84,7 +84,7 @@ function renderCart(cart) {
 
 function getQty(productId) {
   const el = document.querySelector(`[data-qty="${productId}"]`);
-  return el ? parseInt(el.textContent, 10) : 1;
+  return el ? parseInt(el.value, 10) : 1;
 }
 
 function cartItemHTML(item) {
@@ -92,9 +92,10 @@ function cartItemHTML(item) {
   const img = productImage(p.image);
   const fallback = (typeof getPKProductImage === 'function') ? getPKProductImage(p) : '';
   const displayImg = img || fallback;
+  const emoji = CATEGORY_EMOJI[p.category] || '📦';
   const thumb = displayImg
-    ? `<img src="${displayImg}" alt="${escapeHTML(p.name)}" style="width:100%;height:100%;object-fit:cover;border-radius:8px" onerror="this.outerHTML='${CATEGORY_EMOJI[p.category] || '📦'}'">`
-    : CATEGORY_EMOJI[p.category] || '📦';
+    ? `<img src="${displayImg}" alt="${escapeHTML(p.name)}" style="width:100%;height:100%;object-fit:cover;border-radius:8px" onerror="this.outerHTML='${emoji}'">`
+    : emoji;
   return `
     <div class="cart-item">
       <div class="thumb">${thumb}</div>
