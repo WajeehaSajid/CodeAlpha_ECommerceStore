@@ -142,9 +142,8 @@ async function loadProducts() {
 }
 
 function productCardHTML(p) {
-  // Build the thumb with the category badge INSIDE it (so absolute positioning works)
-  const fallbackUrl = (typeof getPKProductImage === 'function') ? getPKProductImage(p) : '';
-  const imgSrc = (p.image ? `/uploads/${p.image}` : '') || fallbackUrl;
+  // FIX: productImage() Cloudinary URL ko correctly handle karta hai
+  const imgSrc = productImage(p.image);
   const emoji = CATEGORY_EMOJI[p.category] || '📦';
   const imgInner = imgSrc
     ? `<img src="${imgSrc}" alt="${escapeHTML(p.name)}" loading="lazy"
@@ -224,8 +223,8 @@ function renderDetail(p) {
   const inStock = p.stock > 0;
   detailQty = 1;
 
-  const fallbackImg = (typeof getPKProductImage === 'function') ? getPKProductImage(p) : '';
-  const imgSrc = (p.image ? `/uploads/${p.image}` : '') || fallbackImg;
+  // FIX: productImage() use karo — Cloudinary URL directly return hoga
+  const imgSrc = productImage(p.image);
   const emoji = (typeof CATEGORY_EMOJI !== 'undefined' ? CATEGORY_EMOJI[p.category] : null) || '📦';
   const imgInner = imgSrc
     ? `<img src="${imgSrc}" alt="${escapeHTML(p.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
@@ -331,7 +330,6 @@ function renderDetail(p) {
         selectedStar = 0;
         highlightStars(0);
         document.querySelector('.reviews h2').textContent = `Reviews (${updated.ratings.length})`;
-        // Hide the form after submission — one review per user
         const formWrap = document.getElementById('reviewFormWrap');
         if (formWrap) {
           formWrap.innerHTML = '<p class="muted" style="padding:12px 0">✓ Your review has been submitted. Thank you!</p>';
