@@ -1,4 +1,4 @@
-# CodeAlpha E-Commerce Store 🛍️
+# CodeAlpha E-Commerce Store
 
 A complete, production-ready **full-stack E-Commerce Store** built with a Node.js/Express
 REST API, MongoDB, and a hand-crafted **vanilla HTML/CSS/JavaScript** frontend (no React,
@@ -10,7 +10,7 @@ history, and a full admin dashboard.
 
 ---
 
-## ✨ Features
+## Features
 
 - **JWT authentication** (register / login) with `bcryptjs` password hashing
 - **Role-based access** — `user` and `admin`
@@ -26,7 +26,7 @@ history, and a full admin dashboard.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Layer     | Technology |
 |-----------|------------|
@@ -39,7 +39,7 @@ history, and a full admin dashboard.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 CodeAlpha_ECommerceStore/
@@ -63,7 +63,7 @@ CodeAlpha_ECommerceStore/
 
 ---
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) v18+
@@ -117,7 +117,7 @@ command runs the whole stack.
 
 ---
 
-## 🌱 Seeding the Database
+## Seeding the Database
 
 ```bash
 npm run seed
@@ -134,7 +134,7 @@ Plus **10 sample products** across Electronics, Clothing, Books, Accessories and
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### Auth — `/api/auth`
 | Method | Endpoint | Access | Description |
@@ -172,7 +172,7 @@ Plus **10 sample products** across Electronics, Clothing, Books, Accessories and
 
 ---
 
-## 🗃️ Data Models
+## Data Models
 
 - **User** — `{ name, email, password (hashed), role: ['user','admin'], createdAt }`
 - **Product** — `{ name, description, price, category, stock, image, ratings: [{ user, rating, review }], avgRating, createdAt }`
@@ -181,7 +181,7 @@ Plus **10 sample products** across Electronics, Clothing, Books, Accessories and
 
 ---
 
-## 🎨 Design Tokens
+## Design Tokens
 
 | Token | Value |
 |-------|-------|
@@ -198,20 +198,6 @@ Fonts: **Outfit** (headings) + **Inter** (body) via Google Fonts.
 
 ---
 
-## 📸 Screenshots
-
-> _Add screenshots of the home page, product detail, cart, checkout and admin dashboard here._
-
-| Home | Product Detail |
-|------|----------------|
-| _screenshot_ | _screenshot_ |
-
-| Cart | Admin Dashboard |
-|------|-----------------|
-| _screenshot_ | _screenshot_ |
-
----
-
-## 📝 License
+## License
 
 This project is licensed under the **MIT License**.
