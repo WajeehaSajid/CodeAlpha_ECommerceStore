@@ -85,8 +85,9 @@ const api = {
 /* ------------------------------ Image helper ------------------------------ */
 function productImage(filename) {
   if (!filename) return '';
-  // Cloudinary URL already complete hota hai
+  // Cloudinary URL already complete hota hai (https://res.cloudinary.com/...)
   if (filename.startsWith('http')) return filename;
+  // Purane local images ke liye fallback
   return `/uploads/${filename}`;
 }
 
