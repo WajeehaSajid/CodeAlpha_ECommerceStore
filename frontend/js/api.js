@@ -101,15 +101,12 @@ const CATEGORY_EMOJI = {
 
 function productThumbHTML(product, cls = 'product-thumb') {
   const img = productImage(product.image);
-  const fallbackUrl = (typeof getPKProductImage === 'function') ? getPKProductImage(product) : '';
-  const displayImg = img || fallbackUrl;
   const emoji = CATEGORY_EMOJI[product.category] || '📦';
 
-  if (displayImg) {
-    // Build thumb with JS-safe onerror using createElement — avoids quote-escaping bugs
+  if (img) {
     const id = 'thumb-' + (product._id || Math.random().toString(36).slice(2));
     return `<div class="${cls}" id="${id}">
-      <img src="${displayImg}" alt="${escapeHTML(product.name)}" loading="lazy"
+      <img src="${img}" alt="${escapeHTML(product.name)}" loading="lazy"
         onload="this.style.opacity=1"
         onerror="(function(el){var s=document.createElement('span');s.className='placeholder-emoji';s.textContent='${emoji}';el.parentNode.replaceChild(s,el);})(this)">
     </div>`;
