@@ -6,8 +6,6 @@ no CSS frameworks). Features a stunning modern **dark theme** with glassmorphism
 product cards, toast notifications, JWT authentication, a shopping cart, checkout, order
 history, and a full admin dashboard.
 
-> Built for the **CodeAlpha** internship task.
-
 ---
 
 ## ✨ Features
@@ -195,20 +193,6 @@ Plus **10 sample products** across Electronics, Clothing, Books, Accessories and
 | Success | `#00C896` |
 
 Fonts: **Outfit** (headings) + **Inter** (body) via Google Fonts.
-
----
-
-## 📸 Screenshots
-
-> _Add screenshots of the home page, product detail, cart, checkout and admin dashboard here._
-
-| Home | Product Detail |
-|------|----------------|
-| _screenshot_ | _screenshot_ |
-
-| Cart | Admin Dashboard |
-|------|-----------------|
-| _screenshot_ | _screenshot_ |
 
 ---
 
