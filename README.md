@@ -10,7 +10,7 @@ A full-stack social media platform where users can share posts, connect with oth
 
 ## 🌐 Live Demo
 
-**[View Live on Vercel →](https://code-alpha-social-media-platform-beige.vercel.app)**
+**[View Live on Vercel →](https://code-alpha-social-media-platform-beige.vercel.app)** https://code-alpha-social-media-platform-beige.vercel.app/
 
 ---
 
@@ -174,12 +174,6 @@ ALLOWED_ORIGINS=https://your-vercel-url.vercel.app
 **Wajeeha Sajid**
 - GitHub: [@WajeehaSajid](https://github.com/WajeehaSajid)
 - LinkedIn: [Wajeeha Sajid](https://www.linkedin.com/in/wajeeha-sajid)
-
----
-
-## 🏢 Internship
-
-This project was built as **Task 2** of the **CodeAlpha Full Stack Development Internship**.
 
 ---
 
