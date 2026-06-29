@@ -10,7 +10,7 @@ A full-stack social media platform where users can share posts, connect with oth
 
 ## 🌐 Live Demo
 
-**[View Live on Vercel →](https://code-alpha-social-media-platform-beige.vercel.app)** https://code-alpha-social-media-platform-beige.vercel.app/
+**[View Live on Vercel](https://code-alpha-social-media-platform-beige.vercel.app)** 
 
 ---
 
