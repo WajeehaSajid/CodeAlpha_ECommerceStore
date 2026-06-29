@@ -1,7 +1,5 @@
 # Aether — Social Media Platform 🚀
 
-> **CodeAlpha Internship — Full Stack Development | Task 2**
-
 A full-stack social media platform where users can share posts, connect with others, like & comment, and stay updated through real-time notifications.
 
 ![Platform](https://img.shields.io/badge/Platform-Web-blue) ![Node.js](https://img.shields.io/badge/Node.js-v18+-green) ![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen) ![License](https://img.shields.io/badge/License-MIT-yellow) ![Status](https://img.shields.io/badge/Status-Live-success)
