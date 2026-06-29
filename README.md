@@ -1,203 +1,188 @@
-# CodeAlpha E-Commerce Store
+# Aether — Social Media Platform 🚀
 
-A complete, production-ready **full-stack E-Commerce Store** built with a Node.js/Express
-REST API, MongoDB, and a hand-crafted **vanilla HTML/CSS/JavaScript** frontend (no React,
-no CSS frameworks). Features a stunning modern **dark theme** with glassmorphism, animated
-product cards, toast notifications, JWT authentication, a shopping cart, checkout, order
-history, and a full admin dashboard.
+> **CodeAlpha Internship — Full Stack Development | Task 2**
 
-> Built for the **CodeAlpha** internship task.
+A full-stack social media platform where users can share posts, connect with others, like & comment, and stay updated through real-time notifications.
+
+![Platform](https://img.shields.io/badge/Platform-Web-blue) ![Node.js](https://img.shields.io/badge/Node.js-v18+-green) ![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen) ![License](https://img.shields.io/badge/License-MIT-yellow) ![Status](https://img.shields.io/badge/Status-Live-success)
 
 ---
 
-## Features
+## 🌐 Live Demo
 
-- **JWT authentication** (register / login) with `bcryptjs` password hashing
-- **Role-based access** — `user` and `admin`
-- **Product catalog** with category filter, live search (debounced), sorting & pagination
-- **Product detail** pages with star ratings, stock status & reviews
-- **Shopping cart** — add / update quantity / remove / clear, animated cart badge
-- **Checkout** with shipping form, free shipping over $50, order success screen
-- **My Orders** — order history with color-coded status badges
-- **Admin dashboard** — product CRUD (with image upload), order management, stats
-- **Image uploads** via Multer
-- **Toast notifications** on every action
-- **Fully responsive** (4 → 2 → 1 column grid) with a full-page mobile menu
+**[View Live on Vercel →](https://code-alpha-social-media-platform-beige.vercel.app)**
 
 ---
 
-## Tech Stack
+## ✨ Features
 
-| Layer     | Technology |
-|-----------|------------|
-| Frontend  | HTML5, CSS3 (custom), Vanilla JavaScript (ES6+), `fetch()` |
-| Backend   | Node.js, Express.js |
-| Database  | MongoDB + Mongoose ODM |
-| Auth      | JSON Web Tokens (JWT) + bcryptjs |
-| Uploads   | Multer |
-| Config    | dotenv |
+- 🔐 **Authentication** — Secure signup & login with JWT tokens and bcrypt password hashing
+- 📝 **Posts** — Create, edit, and delete posts with optional image uploads
+- ❤️ **Likes** — Like and unlike posts on home feed and profile pages
+- 💬 **Comments** — Add and delete comments on any post
+- 👥 **Follow System** — Follow/unfollow users with live follower counts
+- 👤 **User Profiles** — View and edit your profile, upload avatar, update bio
+- 🔖 **Saved Posts** — Bookmark posts and access them from your Saved Posts tab
+- 🔔 **Notifications** — Get notified when someone likes, comments, or follows you
+- 🔍 **Search** — Find users across the platform instantly
+- 📱 **Responsive Design** — Works beautifully on desktop and mobile
 
 ---
 
-## Project Structure
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB, Mongoose |
+| **Authentication** | JSON Web Tokens (JWT), bcryptjs |
+| **Image Storage** | Cloudinary |
+| **Frontend** | HTML, CSS, Vanilla JavaScript |
+| **Security** | Helmet.js, express-rate-limit, CORS |
+| **Deployment** | Vercel |
+
+---
+
+## 📁 Project Structure
 
 ```
-CodeAlpha_ECommerceStore/
-├── backend/
-│   ├── config/db.js
-│   ├── models/        (User.js, Product.js, Order.js, Cart.js)
-│   ├── routes/        (auth.js, products.js, cart.js, orders.js)
-│   ├── middleware/    (auth.js — JWT verify + admin guard)
-│   ├── uploads/       (product images)
-│   ├── seed.js
-│   └── server.js
-├── frontend/
-│   ├── index.html  product.html  cart.html  checkout.html
-│   ├── login.html  register.html  orders.html  admin.html
-│   ├── css/style.css
-│   └── js/         (api.js, auth.js, products.js, cart.js, checkout.js, orders.js, admin.js)
-├── .env.example
-├── package.json
-└── README.md
+aether/
+├── public/              # Frontend (HTML, CSS, JS)
+│   ├── index.html       # Landing / Auth page
+│   ├── feed.html        # Main feed
+│   ├── profile.html     # User profile
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       ├── auth.js
+│       ├── feed.js
+│       ├── profile.js
+│       └── utils.js
+├── routes/              # API routes
+│   ├── auth.js          # Register, login
+│   ├── users.js         # Profile, follow, search
+│   ├── posts.js         # CRUD, likes, bookmarks
+│   ├── comments.js      # Comments
+│   ├── notifications.js
+│   ├── search.js
+│   └── upload.js        # Cloudinary image upload
+├── models/              # Mongoose schemas
+├── middleware/          # Auth middleware
+├── config/              # DB config
+├── server.js            # Entry point
+├── vercel.json          # Vercel deployment config
+└── package.json
 ```
 
 ---
 
-## Installation & Setup
+## 🚀 Getting Started Locally
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) v18+
-- [MongoDB](https://www.mongodb.com/) running locally **or** a MongoDB Atlas connection string
+- Node.js v18+
+- MongoDB Atlas account
+- Cloudinary account
 
-### Steps
-
-1. **Clone the repo**
-   ```bash
-   git clone <repo-url>
-   cd CodeAlpha_ECommerceStore
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Configure environment variables**
-   ```bash
-   cp .env.example .env
-   ```
-   Then edit `.env`:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://127.0.0.1:27017/codealpha_ecommerce
-   JWT_SECRET=your_long_random_secret
-   JWT_EXPIRES_IN=7d
-   ```
-
-4. **(Optional) Start a local MongoDB with Docker**
-   ```bash
-   docker run -d --name ecom-mongo -p 27017:27017 mongo:7
-   ```
-
-5. **Seed the database** (creates an admin, a demo user & 10 products)
-   ```bash
-   npm run seed
-   ```
-
-6. **Run the server**
-   ```bash
-   npm start      # production
-   npm run dev    # development (nodemon)
-   ```
-
-7. **Open the app** → <http://localhost:5000>
-
-The Express server serves both the API (`/api/...`) and the static frontend, so a single
-command runs the whole stack.
-
----
-
-## Seeding the Database
+### Installation
 
 ```bash
-npm run seed
+# 1. Clone the repository
+git clone https://github.com/WajeehaSajid/CodeAlpha_SocialMediaPlatform.git
+
+# 2. Navigate to project folder
+cd CodeAlpha_SocialMediaPlatform/aether
+
+# 3. Install dependencies
+npm install
+
+# 4. Create your .env file
+cp .env.example .env
+# Fill in your values in .env
+
+# 5. Start the development server
+npm run dev
 ```
 
-This wipes existing data and inserts:
-
-| Account | Email | Password |
-|---------|-------|----------|
-| Admin   | `admin@store.com` | `admin123` |
-| Customer| `user@store.com`  | `user123`  |
-
-Plus **10 sample products** across Electronics, Clothing, Books, Accessories and Sports.
+Open `http://localhost:5000` in your browser.
 
 ---
 
-## API Endpoints
+## ⚙️ Environment Variables
 
-### Auth — `/api/auth`
-| Method | Endpoint | Access | Description |
-|--------|----------|--------|-------------|
-| POST | `/register` | Public | Register (name, email, password, role) → returns JWT |
-| POST | `/login` | Public | Login → returns JWT + user |
-| GET  | `/me` | Private | Get current user profile |
+Create a `.env` file in the `aether/` folder with these variables:
 
-### Products — `/api/products`
-| Method | Endpoint | Access | Description |
-|--------|----------|--------|-------------|
-| GET | `/` | Public | List products — `?category=&search=&sort=price_asc\|price_desc\|newest&page=&limit=` |
-| GET | `/:id` | Public | Single product |
-| POST | `/` | Admin | Create product (multipart, image upload) |
-| PUT | `/:id` | Admin | Update product |
-| DELETE | `/:id` | Admin | Delete product |
-| POST | `/:id/reviews` | Private | Add / update a rating & review |
+```env
+MONGODB_URI=your_mongodb_srv_connection_string
+JWT_SECRET=your_long_random_secret_key
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+NODE_ENV=production
+ALLOWED_ORIGINS=https://your-vercel-url.vercel.app
+```
 
-### Cart — `/api/cart` (all private)
+> ⚠️ Never commit your `.env` file. It is already in `.gitignore`.
+
+---
+
+## 📡 API Endpoints
+
+### Auth
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/` | Get the user's cart |
-| POST | `/add` | Add item `{ productId, quantity }` |
-| PUT | `/update` | Update quantity `{ productId, quantity }` |
-| DELETE | `/remove/:productId` | Remove an item |
-| DELETE | `/clear` | Clear the cart |
+| POST | `/api/auth/register` | Create new account |
+| POST | `/api/auth/login` | Login and get JWT |
 
-### Orders — `/api/orders` (private)
-| Method | Endpoint | Access | Description |
-|--------|----------|--------|-------------|
-| POST | `/` | Private | Place order from cart (saves shipping address, clears cart) |
-| GET | `/myorders` | Private | Logged-in user's orders |
-| GET | `/` | Admin | All orders |
-| PUT | `/:id/status` | Admin | Update order status (`pending → processing → shipped → delivered`) |
+### Posts
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/posts` | Get all posts (feed) |
+| POST | `/api/posts` | Create a post |
+| PUT | `/api/posts/:id` | Edit a post |
+| DELETE | `/api/posts/:id` | Delete a post |
+| POST | `/api/posts/:id/like` | Like / unlike a post |
+| POST | `/api/posts/:id/bookmark` | Save / unsave a post |
 
----
+### Users
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/users/:username` | Get user profile |
+| PUT | `/api/users/profile` | Update profile |
+| POST | `/api/users/:id/follow` | Follow / unfollow |
 
-## Data Models
-
-- **User** — `{ name, email, password (hashed), role: ['user','admin'], createdAt }`
-- **Product** — `{ name, description, price, category, stock, image, ratings: [{ user, rating, review }], avgRating, createdAt }`
-- **Cart** — `{ user (ref), items: [{ product (ref), quantity }], updatedAt }`
-- **Order** — `{ user (ref), items: [{ product (ref), quantity, priceAtPurchase }], totalAmount, shippingAddress: { name, street, city, country, zip }, status, createdAt }`
-
----
-
-## Design Tokens
-
-| Token | Value |
-|-------|-------|
-| Background | `#0D0D0D` |
-| Surface | `#1A1A2E` |
-| Primary accent | `#E94560` |
-| Secondary accent | `#F5A623` |
-| Text primary | `#FFFFFF` |
-| Text secondary | `#A0A0B0` |
-| Border | `#2A2A3E` |
-| Success | `#00C896` |
-
-Fonts: **Outfit** (headings) + **Inter** (body) via Google Fonts.
+### Comments
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/comments/:postId` | Get comments on a post |
+| POST | `/api/comments/:postId` | Add a comment |
+| DELETE | `/api/comments/:id` | Delete a comment |
 
 ---
 
-## License
+## 🔒 Security
 
-This project is licensed under the **MIT License**.
+- Passwords hashed with **bcryptjs**
+- Routes protected with **JWT middleware**
+- HTTP headers secured with **Helmet.js**
+- Rate limiting on auth and upload routes
+- Environment variables never exposed in code
+
+---
+
+## 👩‍💻 Author
+
+**Wajeeha Sajid**
+- GitHub: [@WajeehaSajid](https://github.com/WajeehaSajid)
+- LinkedIn: [Wajeeha Sajid](https://www.linkedin.com/in/wajeeha-sajid)
+
+---
+
+## 🏢 Internship
+
+This project was built as **Task 2** of the **CodeAlpha Full Stack Development Internship**.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
